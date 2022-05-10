@@ -28,8 +28,7 @@ class ModelBooking extends CI_Model
     }
     public function simpanDetail($where = null)
     {
-        $sql = "INSERT INTO booking_detail (id_booking,id_buku) SELECT booking.id
-        _booking,temp.id_buku FROM booking, temp WHERE temp.id_user=booking.id_user AND booking.id_user='$where'";
+        $sql = "INSERT INTO booking_detail (id_booking,id_buku) SELECT booking.id_booking,temp.id_buku FROM booking, temp WHERE temp.id_user=booking.id_user AND booking.id_user='$where'";
         $this->db->query($sql);
     }
     public function insertData($table, $data)
@@ -55,6 +54,7 @@ class ModelBooking extends CI_Model
     {
         return $this->db->truncate($table);
     }
+
     public function createTemp()
     {
         $this->db->query('CREATE TABLE IF NOT EXISTS temp(id_booking varchar(12), tgl_booking DATETIME, email_user varchar(128), id_buku int)');
@@ -88,4 +88,3 @@ class ModelBooking extends CI_Model
         return $kodejadi;
     }
 }
-   
